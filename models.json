@@ -1,0 +1,17 @@
+{
+  "default_key": "final",
+  "models": {
+    "final": {
+      "repo_id": "onrart/final_model",
+      "revision": null
+    },
+    "bertuk": {
+      "repo_id": "onrart/bertuk_v1",
+      "revision": null
+    },
+    "mdeberta": {
+      "repo_id": "onrart/mdeberta_v1",
+      "revision": null
+    }
+  }
+}
