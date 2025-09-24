@@ -17,6 +17,7 @@ from .schemas import (
 )
 
 API_KEY = os.getenv("API_KEY")
+STARTUP_LOAD = os.getenv("STARTUP_LOAD", "1")  # "0" ise startup'ta yükleme yok
 
 
 def require_key(authorization: str | None):
@@ -40,8 +41,11 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def _startup_load_model():
+    if STARTUP_LOAD == "0":
+        return  # model startup'ta yüklenmesin
     repo_id, revision, device_idx = get_default_model_from_config()
     HOLDER.load(repo_id, device_idx, revision)
+
 
 
 @app.get("/")
@@ -135,3 +139,4 @@ async def predict_batch(
             for r in res
         ]
     )
+
